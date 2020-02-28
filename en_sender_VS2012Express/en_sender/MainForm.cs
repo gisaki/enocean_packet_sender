@@ -19,6 +19,10 @@ namespace en_sender
         {
             InitializeComponent();
 
+            // ★test
+            ERP2DataBuilder builder = new ERP2DataBuilder();
+            builder.build(ref tabControl1);
+
             // COM port list first update
             UpdateSerialPortList();
 
