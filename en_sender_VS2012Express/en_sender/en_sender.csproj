@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ERP2Data.cs" />
     <Compile Include="ERP2DataBuilder.cs" />
     <Compile Include="ERP2DataDL.cs" />
     <Compile Include="ESP3Packet.cs" />

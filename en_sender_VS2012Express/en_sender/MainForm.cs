@@ -14,14 +14,31 @@ namespace en_sender
     {
         SerialPortProcessor serial_ = new SerialPortProcessor();
         Boolean serial_connect_ = false;
+        List<ERP2DataBuilder> builders_ = null;
 
         public MainForm()
         {
             InitializeComponent();
 
-            // ★test
-            ERP2DataBuilder builder = new ERP2DataBuilder();
-            builder.build(ref tabControl1);
+            // Initialize Tab
+            {
+                string[] files = System.IO.Directory.GetFiles(
+                    System.IO.Path.GetDirectoryName(
+                        System.Reflection.Assembly.GetEntryAssembly().Location
+                    ) + "/def", 
+                    "*", 
+                    System.IO.SearchOption.TopDirectoryOnly
+                );
+                this.builders_ = new List<ERP2DataBuilder>();
+                foreach (string file in files)
+                {
+                    string[] lines = System.IO.File.ReadAllLines(file, Encoding.Default);
+                    ERP2DataBuilder builder = new ERP2DataBuilder();
+                    builder.InitializeTabControl(ref tabControl1, System.IO.Path.GetFileName(file));
+                    builder.Parse(lines);
+                    this.builders_.Add(builder);
+                }
+            }
 
             // COM port list first update
             UpdateSerialPortList();
@@ -102,22 +119,31 @@ namespace en_sender
 
         private void buttonSend_Click(object sender, EventArgs e)
         {
-            ERP2DataDL erp2data_dl = null;
-
-            // EEP
-            erp2data_dl = new EEPF60204(0);
+            int sel_tab_idx = tabControl1.SelectedIndex;
+            ERP2DataBuilder builder = this.builders_[sel_tab_idx];
 
             // build data and send
-            buildAndSend(erp2data_dl);
+            buildAndSend(builder);
+
+            if (false) // for test
+            {
+                ERP2DataDL erp2data_dl = null;
+
+                // EEP
+                erp2data_dl = new EEPF60204(0);
+
+                // build data and send
+                buildAndSend(erp2data_dl);
+            }
         }
 
         // --------------------------------------------------
         // Build and send packets
         // --------------------------------------------------
-        private void buildAndSend(ERP2DataDL erp2data_dl)
+        private void buildAndSend(ERP2Data erp2data)
         {
             // build data
-            ESP3Packet esp3pkt = new ESP3PacketType10(erp2data_dl);
+            ESP3Packet esp3pkt = new ESP3PacketType10(erp2data);
 
             // Serial port data send
             if (serial_connect_)

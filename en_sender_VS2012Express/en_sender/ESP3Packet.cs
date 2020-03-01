@@ -110,15 +110,15 @@ namespace en_sender
     class ESP3PacketType10 : ESP3Packet
     {
 
-        ERP2DataDL data_dl_; // EEP Data_DL
+        ERP2Data erp2data_; // EEP Data_DL
 
         // Private Constructor:
         private ESP3PacketType10() { }
 
-        public ESP3PacketType10(ERP2DataDL data_dl)
+        public ESP3PacketType10(ERP2Data erp2data)
         {
-            this.data_dl_ = data_dl;
-            this.data_length_ = data_dl.data_length_;
+            this.erp2data_ = erp2data;
+            this.data_length_ = this.erp2data_.data_length_;
             this.optional_length_ = 0x02;
             this.packet_type_ = (byte)PT.RADIO_ERP2;
             this.optional_data_ = new byte[2] { 3, 0xFF };
@@ -133,7 +133,7 @@ namespace en_sender
         // --------------------------------------------------
         protected override byte[] data_
         {
-            get { return this.data_dl_.build(); }
+            get { return this.erp2data_.build(); }
         }
     }
 }

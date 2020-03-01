@@ -31,9 +31,9 @@
             this.buttonSend = new System.Windows.Forms.Button();
             this.textBox_SendPacket = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.comboBoxSerialPort = new System.Windows.Forms.ComboBox();
             this.buttonConnect = new System.Windows.Forms.Button();
+            this.comboBoxSerialPort = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -53,7 +53,7 @@
             // 
             this.textBox_SendPacket.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox_SendPacket.Location = new System.Drawing.Point(12, 206);
+            this.textBox_SendPacket.Location = new System.Drawing.Point(12, 365);
             this.textBox_SendPacket.Multiline = true;
             this.textBox_SendPacket.Name = "textBox_SendPacket";
             this.textBox_SendPacket.Size = new System.Drawing.Size(403, 112);
@@ -61,8 +61,6 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.Controls.Add(this.buttonConnect);
             this.groupBox1.Controls.Add(this.comboBoxSerialPort);
             this.groupBox1.Controls.Add(this.label1);
@@ -71,26 +69,6 @@
             this.groupBox1.Size = new System.Drawing.Size(320, 48);
             this.groupBox1.TabIndex = 7;
             this.groupBox1.TabStop = false;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 21);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(91, 12);
-            this.label1.TabIndex = 7;
-            this.label1.Text = "Select COM Port";
-            // 
-            // comboBoxSerialPort
-            // 
-            this.comboBoxSerialPort.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.comboBoxSerialPort.FormattingEnabled = true;
-            this.comboBoxSerialPort.Location = new System.Drawing.Point(103, 18);
-            this.comboBoxSerialPort.Name = "comboBoxSerialPort";
-            this.comboBoxSerialPort.Size = new System.Drawing.Size(99, 20);
-            this.comboBoxSerialPort.TabIndex = 8;
-            this.comboBoxSerialPort.DropDown += new System.EventHandler(this.comboBoxSerialPort_DropDown);
             // 
             // buttonConnect
             // 
@@ -103,6 +81,26 @@
             this.buttonConnect.UseVisualStyleBackColor = true;
             this.buttonConnect.Click += new System.EventHandler(this.buttonConnect_Click);
             // 
+            // comboBoxSerialPort
+            // 
+            this.comboBoxSerialPort.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.comboBoxSerialPort.FormattingEnabled = true;
+            this.comboBoxSerialPort.Location = new System.Drawing.Point(103, 18);
+            this.comboBoxSerialPort.Name = "comboBoxSerialPort";
+            this.comboBoxSerialPort.Size = new System.Drawing.Size(99, 20);
+            this.comboBoxSerialPort.TabIndex = 8;
+            this.comboBoxSerialPort.DropDown += new System.EventHandler(this.comboBoxSerialPort_DropDown);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(6, 21);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(91, 12);
+            this.label1.TabIndex = 7;
+            this.label1.Text = "Select COM Port";
+            // 
             // tabControl1
             // 
             this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -111,14 +109,14 @@
             this.tabControl1.Location = new System.Drawing.Point(12, 67);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(403, 133);
+            this.tabControl1.Size = new System.Drawing.Size(403, 292);
             this.tabControl1.TabIndex = 8;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(427, 330);
+            this.ClientSize = new System.Drawing.Size(427, 489);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.textBox_SendPacket);

@@ -13,17 +13,17 @@ namespace en_sender
         R_ORG_VLD = 0x04,
     }
 
-    abstract class ERP2DataDL
+    abstract class ERP2DataDL : ERP2Data
     {
         //
         protected abstract R_ORG getRORG();
         protected abstract byte[] getData();
-        public ushort data_length_
+        public override ushort data_length_
         {
             get { return (ushort)(getData().Length + 6); }
         }
 
-        public byte[] build()
+        public override byte[] build()
         {
             byte[] data = new byte[this.data_length_];
             // Bit 5…7 Address Control, 001: Originator-ID 32 bit; no Destination-ID
