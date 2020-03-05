@@ -144,6 +144,12 @@ namespace en_sender
         {
             // build data
             ESP3Packet esp3pkt = new ESP3PacketType10(erp2data);
+            if (checkBoxRepeated.Checked)
+            {
+                // repeated telegram
+                esp3pkt = null;
+                esp3pkt = new ESP3PacketType10(erp2data, true);
+            }
 
             // Serial port data send
             if (serial_connect_)

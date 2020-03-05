@@ -35,13 +35,14 @@
             this.comboBoxSerialPort = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.checkBoxRepeated = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // buttonSend
             // 
             this.buttonSend.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonSend.Location = new System.Drawing.Point(340, 28);
+            this.buttonSend.Location = new System.Drawing.Point(340, 15);
             this.buttonSend.Name = "buttonSend";
             this.buttonSend.Size = new System.Drawing.Size(75, 23);
             this.buttonSend.TabIndex = 2;
@@ -112,11 +113,22 @@
             this.tabControl1.Size = new System.Drawing.Size(403, 292);
             this.tabControl1.TabIndex = 8;
             // 
+            // checkBoxRepeated
+            // 
+            this.checkBoxRepeated.AutoSize = true;
+            this.checkBoxRepeated.Location = new System.Drawing.Point(340, 44);
+            this.checkBoxRepeated.Name = "checkBoxRepeated";
+            this.checkBoxRepeated.Size = new System.Drawing.Size(72, 16);
+            this.checkBoxRepeated.TabIndex = 9;
+            this.checkBoxRepeated.Text = "Repeated";
+            this.checkBoxRepeated.UseVisualStyleBackColor = true;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(427, 489);
+            this.Controls.Add(this.checkBoxRepeated);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.textBox_SendPacket);
@@ -140,6 +152,7 @@
         private System.Windows.Forms.ComboBox comboBoxSerialPort;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.CheckBox checkBoxRepeated;
     }
 }
 
