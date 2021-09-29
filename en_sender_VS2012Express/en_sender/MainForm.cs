@@ -117,13 +117,23 @@ namespace en_sender
             }
         }
 
-        private void buttonSend_Click(object sender, EventArgs e)
+        private async void buttonSend_Click(object sender, EventArgs e)
         {
             int sel_tab_idx = tabControl1.SelectedIndex;
             ERP2DataBuilder builder = this.builders_[sel_tab_idx];
 
             // build data and send
             buildAndSend(builder);
+
+            if (false) // for test
+            {
+                for (int i = 0; i < 10000; i++)
+                {
+                    await Task.Delay(100);
+                    buildAndSend(builder);
+                }
+            }
+
 
             if (false) // for test
             {
@@ -140,6 +150,7 @@ namespace en_sender
         // --------------------------------------------------
         // Build and send packets
         // --------------------------------------------------
+        private Random random = new Random();
         private void buildAndSend(ERP2Data erp2data)
         {
             // build data
@@ -154,7 +165,52 @@ namespace en_sender
             // Serial port data send
             if (serial_connect_)
             {
-                serial_SendData(esp3pkt.build());
+                byte[] packet = esp3pkt.build();
+                if (false) // for test
+                {
+                    switch (random.Next(5))
+                    {
+                        case 0:
+                            {
+                                // Invalid change of 1 byte 
+                                // ESP3 invalid CRC
+                                int pos = random.Next(packet.Length);
+                                byte value = (byte)(random.Next(256));
+                                packet[pos] = value;
+                            }
+                            break;
+                        case 1:
+                            {
+                                // Invalid change of 1 byte 
+                                // ESP3 valid CRC
+                                int pos = random.Next(packet.Length);
+                                byte value = (byte)(random.Next(256));
+                                packet = esp3pkt.buildInvalid(pos, value); // overwrite
+                            }
+                            break;
+                        case 2:
+                            {
+                                // Invalid length
+                                // ESP3 valid CRC
+                                int pos = 1;
+                                byte value = (byte)(random.Next(256));
+                                packet = esp3pkt.buildInvalid(pos, value); // overwrite
+                            }
+                            break;
+                        case 3:
+                            {
+                                // Invalid length (short)
+                                int len = random.Next(packet.Length);
+                                byte[] packet2 = new byte[len];
+                                Array.Copy(packet, packet2, len);
+                                packet = packet2;
+                            }
+                            break;
+                        default:
+                            break;
+                    } // switch
+                }
+                serial_SendData(packet);
             }
         }
         // --------------------------------------------------

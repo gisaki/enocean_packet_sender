@@ -52,6 +52,44 @@ namespace en_sender
             return packet;
         }
 
+        public byte[] buildInvalid(int pos, byte value)
+        {
+            byte[] packet = new byte[6 + this.data_length_ + this.optional_length_ + 1];
+            packet[0] = this.sync_byte_;
+            packet[1] = (byte)((this.data_length_ & 0xFF00) >> 4);
+            packet[2] = (byte)((this.data_length_ & 0x00FF) >> 0);
+            packet[3] = this.optional_length_;
+            packet[4] = this.packet_type_;
+            packet[5] = this.crc8h_;
+            Array.Copy(data_, 0, packet, 6, this.data_length_);
+            Array.Copy(optional_data_, 0, packet, 6 + data_.Length, this.optional_length_);
+            packet[6 + this.data_length_ + this.optional_length_] = 0x00;
+
+            // Change to invalid data
+            if (pos < packet.Length)
+            {
+                packet[pos] = value;
+            }
+
+            // CRC8H
+            {
+                byte[] h = new byte[4];
+                Array.Copy(packet, 1, h, 0, h.Length);
+                // calc
+                packet[5] = esp3_calcCRC(h, h.Length); /* CRC8H */
+            }
+
+            // CRC8D
+            {
+                byte[] d = new byte[this.data_length_ + this.optional_length_];
+                Array.Copy(packet, 6, d, 0, d.Length);
+                // calc
+                packet[6 + this.data_length_ + this.optional_length_] = esp3_calcCRC(d, d.Length); /* CRC8D */
+            }
+
+            return packet;
+        }
+        
         // --------------------------------------------------
         // Calc CRC (EnOcean Serial Protocol 3)
         // --------------------------------------------------

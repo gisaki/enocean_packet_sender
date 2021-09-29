@@ -32,11 +32,13 @@ namespace en_sender
             StopBits = StopBits.One;
 
             ManagementClass mcW32SerPort = new ManagementClass("Win32_SerialPort");
+#if false // Temporarily disable because it takes time (strange)
             foreach (ManagementObject port in mcW32SerPort.GetInstances())
             {
                 Debug.WriteLine(port.GetPropertyValue("Caption")); // Communications Port (COM1)
                 Debug.WriteLine(port.GetPropertyValue("DeviceID")); // COM1
             }
+#endif
 
         }
 
