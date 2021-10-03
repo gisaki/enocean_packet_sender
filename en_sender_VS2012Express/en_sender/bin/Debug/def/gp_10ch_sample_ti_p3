@@ -1,0 +1,7 @@
+Header,8,,0x2F
+Extendedtype,8,,0x03
+Originator-ID,32,,0x11223344
+SEQ,2,,0x01
+IDX,6,,0x02
+Channel definition 9(idx4 of 5byte),8,,0x4A
+CRC,8,,0xFF

@@ -1,0 +1,20 @@
+Header,8,,0x2F
+Extendedtype,8,,0x05
+Originator-ID,32,,0x11223344
+Teach-in request header - Manufacturer ID,11,,0x7FF
+Teach-in request header - Data direction,1,,0x00
+Teach-in request header - Purpose,2,,0x00
+Teach-in request header - Not used,2,,0x00
+Channel definition 0 - Channel type,2,,0x01
+Channel definition 0 - Signal type,8,,0x01
+Channel definition 0 - Value type,2,,0x01
+Channel definition 0 - Resolution,4,,0x06
+Channel definition 0 - Engineering minimum,8,,0x00
+Channel definition 0 - Scaling minimum,4,,0x0A
+Channel definition 0 - Engineering maximum,8,,0x64
+Channel definition 0 - Scaling maximum,4,,0x0A
+Channel definition 1,40,,0x405600A64A
+Channel definition 2,40,,0x405600A64A
+Channel definition 3,40,,0x405600A64A
+Channel definition 4,40,,0x405600A64A
+CRC,8,,0xFF

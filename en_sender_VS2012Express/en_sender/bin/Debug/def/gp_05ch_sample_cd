@@ -1,0 +1,9 @@
+Header,8,,0x2F
+Extendedtype,8,,0x07
+Originator-ID,32,,0x11223344
+Data ch0,8,,0x10
+Data ch1,8,,0x20
+Data ch2,8,,0x30
+Data ch3,8,,0x40
+Data ch4,8,,0x50
+CRC,8,,0xFF
